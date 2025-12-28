@@ -9,7 +9,7 @@ class Program
 
         while (true)
         {
-           
+            Console.Clear();
             Console.WriteLine("========================================");
             Console.WriteLine("     ZOOM ATTENDANCE BOSHQARUV MENYUSI");
             Console.WriteLine("========================================");
@@ -79,7 +79,7 @@ class Program
         Console.Clear();
         foreach (var item in list)
         {
-            Console.WriteLine($"{item.FullNameWithCode} | {item.Email} | {item.Duration} min");
+            Console.WriteLine($"{item.FullNameWithCode} | {item.Email} | {item.Duration} min  | {item.EntrDate}  | {item.ExitDate}  | {item.IsHost}  | {item.IsWaiting}");
         }
         Console.WriteLine("\nDavom ettirish uchun tugma bosing...");
         Console.ReadKey();
