@@ -4,7 +4,7 @@ using ZoomAttendanceApp.Domain.Models;
 
     class Program
     {
-        static StudentService studentService = new StudentService();
+        static StudentServise studentService = new StudentServise();
         static AttendanceService attendanceService = new AttendanceService();
         static ExternalAttendanceService service = new ExternalAttendanceService();
 

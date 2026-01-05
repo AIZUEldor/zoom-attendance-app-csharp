@@ -17,7 +17,7 @@ namespace WorkingWithFileExcel.Infrastucture.Data
         public ExcelContext()
         {
             string directoryPath = @"C:\Users\Asus\Desktop\Attendance";
-            string filePath = Path.Combine(directoryPath, "fixed_attendance.csv");
+            string filePath = Path.Combine(directoryPath, "attendance1.csv");
             string[] excelLines = File.ReadAllLines(filePath);
 
             foreach (var line in excelLines.Skip(1))
@@ -27,7 +27,7 @@ namespace WorkingWithFileExcel.Infrastucture.Data
                 {
                     FullNameWithCode = studentInfo[0],
                     Email = studentInfo[1],
-                    EntrDate = studentInfo[2],
+                    EnterDate = studentInfo[2],
                     ExitDate = studentInfo[3],
                     Duration = int.Parse(studentInfo[4]),
                     IsHost = studentInfo[5],
@@ -39,10 +39,11 @@ namespace WorkingWithFileExcel.Infrastucture.Data
             }
 
         }
-        public List<ExternalAttendance> GetAll()
+        public List<ExternalAttendance> GetExternalAttendances()
         {
             return externalAttendances;
         }
+
     }
 
 }
