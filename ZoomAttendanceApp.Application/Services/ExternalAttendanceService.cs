@@ -13,41 +13,42 @@ namespace ZoomAttendanceApp.Application.Services
             context = new ExcelContext();
         }
 
-        public List<ExternalAttendance> GetAll() => context.GetAll();
+        public List<ExternalAttendance> GetAll() => context.GetExternalAttendances();
 
         public ExternalAttendance GetByName(string name)
         {
-            return context.GetAll()
+            return context.GetExternalAttendances()
                 .FirstOrDefault(x => x.FullNameWithCode.Contains(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public ExternalAttendance GetByEmail(string email)
         {
-            return context.GetAll()
+            return context.GetExternalAttendances()
                 .FirstOrDefault(x => x.Email.Contains(email, StringComparison.OrdinalIgnoreCase));
         }
 
         public List<ExternalAttendance> GetGuests()
         {
-            return context.GetAll().Where(x => x.IsHost == "Да").ToList();
+            return context.GetExternalAttendances().Where(x => x.IsHost == "Ha").ToList();
         }
 
         public List<ExternalAttendance> GetWaitingRoom()
         {
-            return context.GetAll().Where(x => x.IsWaiting == "Да").ToList();
+            return context.GetExternalAttendances().Where(x => x.IsWaiting == "Ha").ToList();
         }
 
         public int GetCount()
         {
-            return context.GetAll().Count();
+            return context.GetExternalAttendances().Count();
         }
 
         public List<ExternalAttendance> GetMostActive()
         {
-            return context.GetAll()
+            return context.GetExternalAttendances()
                 .OrderByDescending(x => x.Duration)
                 .Take(5)
                 .ToList();
         }
+
     }
 }

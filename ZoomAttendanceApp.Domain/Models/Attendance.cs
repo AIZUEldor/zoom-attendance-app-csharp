@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace ZoomAttendanceApp.Domain.Models
 {
-    public class Attendance
+    public class Attandance
     {
-        public Student Student { get; set; }
-        public string EntrDate { get; set; }
-        public string ExitDate { get; set; }
-        public int ParticipationMinutes { get; set; }
-        public int WaitingMinutes { get; set; }
+        public int Id { get; set; }
+        public int StudentId { get; set; }
+        public DateTime Date { get; set; }
+        public bool IsPresent { get; set; }
     }
 }

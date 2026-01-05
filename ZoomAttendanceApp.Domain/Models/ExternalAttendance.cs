@@ -10,10 +10,11 @@ namespace ZoomAttendanceApp.Domain.Models
     {
         public string FullNameWithCode { get; set; }
         public string Email { get; set; }
-        public string EntrDate { get; set; }
+        public string EnterDate { get; set; }
         public string ExitDate { get; set; }
         public int Duration { get; set; }
         public string IsHost { get; set; }
         public string IsWaiting { get; set; }
+
     }
 }
