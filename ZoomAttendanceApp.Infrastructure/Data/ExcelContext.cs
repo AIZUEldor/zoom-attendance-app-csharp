@@ -16,8 +16,8 @@ namespace WorkingWithFileExcel.Infrastucture.Data
         private readonly string filePath;
         public ExcelContext()
         {
-            string directoryPath = @"C:\Users\Asus\Desktop\Attendance";
-            string filePath = Path.Combine(directoryPath, "attendance1.csv");
+            string directoryPath = @"C:\Users\Acer\Desktop\Attandence";
+            string filePath = Path.Combine(directoryPath, "attendance2.csv");
             string[] excelLines = File.ReadAllLines(filePath);
 
             foreach (var line in excelLines.Skip(1))
