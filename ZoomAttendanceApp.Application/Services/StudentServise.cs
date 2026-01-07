@@ -1,31 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OfficeOpenXml;
+﻿using ZoomAttendanceApp.Infrastructure.Data;
 using ZoomAttendanceApp.Domain.Models;
-using ZoomAttendanceApp.Infrastructure.Data;
+using WorkingWithFileExcel.Infrastucture.Data;
 
 namespace ZoomAttendanceApp.Application.Services
 {
     public class StudentServise
     {
-       Student Student = new Student();
-       public Student GetStudentFromExternalAttendance(ExternalAttendance externalAttendance)
-       {
-            var names = externalAttendance.FullNameWithCode.Split(' ');
-            Student.FirstName = names[0];
-            Student.LastName = names[1];
-            Student.Code = names[2];
-            Student.ExternalAttendance = externalAttendance;
-            return Student;
-       }
+        private readonly ExcelContext context;
+        private readonly List<ExternalAttendance> students;
 
+        public StudentServise()
+        {
+            context = new ExcelContext();
+            students = context.GetExternalAttendances();
+        }
 
+      
+        public bool DeleteByName(string name)
+        {
+            var student = students.FirstOrDefault(s =>
+                s.FullNameWithCode.Contains(name, StringComparison.OrdinalIgnoreCase));
+
+            if (student == null)
+                return false;
+
+            students.Remove(student);
+            return true;
+        }
+
+       
+        public bool DeleteByCode(string code)
+        {
+            var student = students.FirstOrDefault(s =>
+                s.FullNameWithCode.Contains(code, StringComparison.OrdinalIgnoreCase));
+
+            if (student == null)
+                return false;
+
+            students.Remove(student);
+            return true;
+        }
 
         
+        public void AddStudent(ExternalAttendance student)
+        {
+            students.Add(student);
+        }
 
+      
+        public List<ExternalAttendance> GetAll()
+        {
+            return students;
+        }
     }
 }

@@ -2,117 +2,159 @@
 using ZoomAttendanceApp.Domain.Models;
 
 
-    class Program
+class Program
+{
+    static StudentServise studentService = new StudentServise();
+    static AttendanceService attendanceService = new AttendanceService();
+    static ExternalAttendanceService service = new ExternalAttendanceService();
+
+    static void Main(string[] args)
     {
-        static StudentServise studentService = new StudentServise();
-        static AttendanceService attendanceService = new AttendanceService();
-        static ExternalAttendanceService service = new ExternalAttendanceService();
-
-        static void Main(string[] args)
+        while (true)
         {
-                while (true)
-                {
-                    Console.Clear();
-                    Console.WriteLine("========================================");
-                    Console.WriteLine("     ZOOM ATTENDANCE BOSHQARUV MENYUSI");
-                    Console.WriteLine("========================================");
-                    Console.WriteLine("1. Barcha qatnashuvchilarni ko‘rish");
-                    Console.WriteLine("2. Ism bo‘yicha qidirish");
-                    Console.WriteLine("3. Email bo‘yicha qidirish");
-                    Console.WriteLine("4. Faqat mehmonlarni ko‘rish (Host)");
-                    Console.WriteLine("5. Kutish zalida bo‘lganlarni ko‘rish");
-                    Console.WriteLine("6. Eng ko‘p qatnashganlarni ko‘rish (Top 5)");
-                    Console.WriteLine("7. Qatnashuvchilar sonini ko‘rish");
-                    Console.WriteLine("8. Ismi bo'yicha o'chirish ");
-                    Console.WriteLine("9. Cod bo'yicha o'chirish ");
-                    Console.WriteLine("10. Student qo'shish ");
-                    Console.WriteLine("11. Yangilangan jadvalni chiqarish ");
-                    Console.WriteLine("0. Dasturdan chiqish");
-                    Console.WriteLine("----------------------------------------");
-                    Console.Write("Tanlovingizni kiriting: ");
+            Console.Clear();
+            Console.WriteLine("========================================");
+            Console.WriteLine("     ZOOM ATTENDANCE BOSHQARUV MENYUSI");
+            Console.WriteLine("========================================");
+            Console.WriteLine("1. Barcha qatnashuvchilarni ko‘rish");
+            Console.WriteLine("2. Ism bo‘yicha qidirish");
+            Console.WriteLine("3. Email bo‘yicha qidirish");
+            Console.WriteLine("4. Faqat mehmonlarni ko‘rish (Host)");
+            Console.WriteLine("5. Kutish zalida bo‘lganlarni ko‘rish");
+            Console.WriteLine("6. Eng ko‘p qatnashganlarni ko‘rish (Top 5)");
+            Console.WriteLine("7. Qatnashuvchilar sonini ko‘rish");
+            Console.WriteLine("8. Ismi bo'yicha o'chirish ");
+            Console.WriteLine("9. Cod bo'yicha o'chirish ");
+            Console.WriteLine("10. Student qo'shish ");
+            Console.WriteLine("11. Yangilangan jadvalni chiqarish ");
+            Console.WriteLine("0. Dasturdan chiqish");
+            Console.WriteLine("----------------------------------------");
+            Console.Write("Tanlovingizni kiriting: ");
 
-                    string choice = Console.ReadLine();
+            string choice = Console.ReadLine();
 
-                    switch (choice)
+            switch (choice)
+            {
+                case "1":
+                    ShowList(service.GetAll());
+                    break;
+
+                case "2":
+                    Console.Write("Ism kiriting: ");
+                    string name = Console.ReadLine();
+                    var byName = service.GetByName(name);
+                    ShowSingle(byName);
+                    break;
+
+                case "3":
+                    Console.Write("Email kiriting: ");
+                    string email = Console.ReadLine();
+                    var byEmail = service.GetByEmail(email);
+                    ShowSingle(byEmail);
+                    break;
+
+                case "4":
+                    ShowList(service.GetGuests());
+                    break;
+
+                case "5":
+                    ShowList(service.GetWaitingRoom());
+                    break;
+
+                case "6":
+                    ShowList(service.GetMostActive());
+                    break;
+
+                case "7":
+                    Console.WriteLine($"Jami qatnashuvchilar soni: {service.GetCount()}");
+                    Console.ReadKey();
+                    break;
+                case "8":
+                    Console.Write("O'chirish uchun ism kiriting: ");
+                    string delName = Console.ReadLine();
+                    bool isDeletedByName = studentService.DeleteByName(delName);
+                    if (isDeletedByName)
                     {
-                        case "1":
-                            ShowList(service.GetAll());
-                            break;
-
-                        case "2":
-                            Console.Write("Ism kiriting: ");
-                            string name = Console.ReadLine();
-                            var byName = service.GetByName(name);
-                            ShowSingle(byName);
-                            break;
-
-                        case "3":
-                            Console.Write("Email kiriting: ");
-                            string email = Console.ReadLine();
-                            var byEmail = service.GetByEmail(email);
-                            ShowSingle(byEmail);
-                            break;
-
-                        case "4":
-                            ShowList(service.GetGuests());
-                            break;
-
-                        case "5":
-                            ShowList(service.GetWaitingRoom());
-                            break;
-
-                        case "6":
-                            ShowList(service.GetMostActive());
-                            break;
-
-                        case "7":
-                            Console.WriteLine($"Jami qatnashuvchilar soni: {service.GetCount()}");
-                            Console.ReadKey();
-                            break;
-
-                        case "0":
-                            return;
-
-                        default:
-                            Console.WriteLine("Noto‘g‘ri tanlov!");
-                            Console.ReadKey();
-                            break;
+                        Console.WriteLine("Student muvaffaqiyatli o'chirildi.");
                     }
-                }
-            }
+                    else
+                    {
+                        Console.WriteLine("Student topilmadi.");
+                    }
+                    Console.ReadKey();
+                    break;
+                case "9":
+                    Console.Write("O'chirish uchun code kiriting: ");
+                    string delCode = Console.ReadLine();
+                    bool isDeletedByCode = studentService.DeleteByCode(delCode);
+                    if (isDeletedByCode)
+                    {
+                        Console.WriteLine("Student muvaffaqiyatli o'chirildi.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Student topilmadi.");
+                    }
+                    Console.ReadKey();
+                    break;
+                case "10":
+                    ExternalAttendance newStudent = new ExternalAttendance();
+                    Console.Write("Ism va code kiriting: ");
+                    newStudent.FullNameWithCode = Console.ReadLine();
+                    Console.Write("Email kiriting: ");
+                    newStudent.Email = Console.ReadLine();
+                    studentService.AddStudent(newStudent);
+                    Console.WriteLine("Yangi student muvaffaqiyatli qo'shildi.");
+                    Console.ReadKey();
+                    break;
+                case "11":
+                    var updatedList = studentService.GetAll();
+                    ShowList(updatedList);
+                    break;
 
-            static void ShowList(List<ExternalAttendance> list)
-            {
-                foreach (var item in list)
-                {
-                    Console.WriteLine($"{item.FullNameWithCode} | {item.Email} | {item.Duration} min | EnterDate:{item.EnterDate}  | ExitDate:{item.ExitDate} | Host:{item.IsHost} |  Waiting:{item.IsWaiting}");
-                }
-                Console.WriteLine("\nDavom ettirish uchun tugma bosing...");
-                Console.ReadKey();
-            }
+                case "0":
+                    return;
 
-            static void ShowSingle(ExternalAttendance? item)
-            {
-
-                if (item == null)
-                {
-                    Console.WriteLine("Ma'lumot topilmadi !");
-                }
-                else
-                {
-                    Console.WriteLine($"Ism: {item.FullNameWithCode}");
-                    Console.WriteLine($"Email: {item.Email}");
-                    Console.WriteLine($"Kirish: {item.EnterDate}");
-                    Console.WriteLine($"Chiqish: {item.ExitDate}");
-                    Console.WriteLine($"Davomiylik: {item.Duration} min");
-                    Console.WriteLine($"Host: {item.IsHost}");
-                    Console.WriteLine($"Waiting: {item.IsWaiting}");
-                }
-
-                Console.WriteLine("\nDavom ettirish uchun tugma bosing...");
-                Console.ReadKey();
+                default:
+                    Console.WriteLine("Noto‘g‘ri tanlov!");
+                    Console.ReadKey();
+                    break;
             }
         }
-    
+    }
+
+    static void ShowList(List<ExternalAttendance> list)
+    {
+        foreach (var item in list)
+        {
+            Console.WriteLine($"{item.FullNameWithCode} | {item.Email} | {item.Duration} min | EnterDate:{item.EnterDate}  | ExitDate:{item.ExitDate} | Host:{item.IsHost} |  Waiting:{item.IsWaiting}");
+        }
+        Console.WriteLine("\nDavom ettirish uchun tugma bosing...");
+        Console.ReadKey();
+    }
+
+    static void ShowSingle(ExternalAttendance? item)
+    {
+
+        if (item == null)
+        {
+            Console.WriteLine("Ma'lumot topilmadi !");
+        }
+        else
+        {
+            Console.WriteLine($"Ism: {item.FullNameWithCode}");
+            Console.WriteLine($"Email: {item.Email}");
+            Console.WriteLine($"Kirish: {item.EnterDate}");
+            Console.WriteLine($"Chiqish: {item.ExitDate}");
+            Console.WriteLine($"Davomiylik: {item.Duration} min");
+            Console.WriteLine($"Host: {item.IsHost}");
+            Console.WriteLine($"Waiting: {item.IsWaiting}");
+        }
+
+        Console.WriteLine("\nDavom ettirish uchun tugma bosing...");
+        Console.ReadKey();
+    }
+}
+
 
 
