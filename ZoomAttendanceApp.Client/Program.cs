@@ -24,9 +24,11 @@ class Program
             Console.WriteLine("6. Eng ko‘p qatnashganlarni ko‘rish (Top 5)");
             Console.WriteLine("7. Qatnashuvchilar sonini ko‘rish");
             Console.WriteLine("8. Ismi bo'yicha o'chirish ");
+           
             Console.WriteLine("9. Cod bo'yicha o'chirish ");
             Console.WriteLine("10. Student qo'shish ");
             Console.WriteLine("11. Yangilangan jadvalni chiqarish ");
+            Console.WriteLine("12. Id bo'yicha qidirish ");
             Console.WriteLine("0. Dasturdan chiqish");
             Console.WriteLine("----------------------------------------");
             Console.Write("Tanlovingizni kiriting: ");
@@ -110,6 +112,20 @@ class Program
                 case "11":
                     var updatedList = studentService.GetAll();
                     ShowList(updatedList);
+                    break;
+                case "12":
+                    Console.Write("Qidirish uchun code kiriting: ");
+                    string searchCode = Console.ReadLine();
+                    var byCode = studentService.GetByCode(searchCode);
+                    if (byCode.Count > 0)
+                    {
+                        ShowList(byCode);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Student topilmadi.");
+                        Console.ReadKey();
+                    }
                     break;
 
                 case "0":

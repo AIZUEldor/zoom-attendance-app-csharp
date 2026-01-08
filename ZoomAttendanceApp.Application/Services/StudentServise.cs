@@ -15,30 +15,39 @@ namespace ZoomAttendanceApp.Application.Services
             students = context.GetExternalAttendances();
         }
 
-      
+
         public bool DeleteByName(string name)
         {
-            var student = students.FirstOrDefault(s =>
+            
+            int removedCount = students.RemoveAll(s =>
                 s.FullNameWithCode.Contains(name, StringComparison.OrdinalIgnoreCase));
 
-            if (student == null)
-                return false;
-
-            students.Remove(student);
-            return true;
+            
+            return removedCount > 0;
         }
 
-       
+        public List<ExternalAttendance> GetByCode(string code)
+        {
+            return students
+                .Where(s =>
+                {
+                    var parts = s.FullNameWithCode.Split(' ');
+                    var studentCode = parts.Length > 0 ? parts[^1] : "";
+                    return studentCode.Equals(code, StringComparison.OrdinalIgnoreCase);
+                })
+                .ToList();
+        }
+
+
+
+
+
         public bool DeleteByCode(string code)
         {
-            var student = students.FirstOrDefault(s =>
+            var student = students.RemoveAll(s =>
                 s.FullNameWithCode.Contains(code, StringComparison.OrdinalIgnoreCase));
 
-            if (student == null)
-                return false;
-
-            students.Remove(student);
-            return true;
+            return student > 0;
         }
 
         
