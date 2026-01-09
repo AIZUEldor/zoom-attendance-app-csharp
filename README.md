@@ -1,20 +1,21 @@
- Zoom Attendance App
- Loyiha haqida
+Zoom Attendance App – Project Overview
 
-**Zoom Attendance App** — bu Zoom darslari yoki yig‘ilishlarida qatnashuvchilarni boshqarish uchun yaratilgan **C# Console Application**. Ushbu loyiha orqali foydalanuvchilarni ko‘rish, qidirish, qo‘shish, o‘chirish va tahlil qilish mumkin.
+Zoom Attendance App is a C# Console Application designed to manage participants in Zoom classes or meetings.
+The application allows users to view, search, add, delete, and analyze attendance data.
 
-Loyiha **Clean Architecture** tamoyillariga yaqin holda tashkil etilgan bo‘lib, `Domain`, `Application`, `Infrastructure` qatlamlariga ajratilgan.
+The project is structured close to Clean Architecture principles and is divided into Domain, Application, and Infrastructure layers.
 
----
+Technologies
 
-## Texnologiyalar
+C# (.NET Console Application)
 
-* **C# (.NET Console Application)**
-* **EPPlus** (Excel bilan ishlash uchun)
-* **LINQ**
-* **OOP (Encapsulation, Abstraction)**
- Loyiha strukturasi
+EPPlus (for working with Excel files)
 
+LINQ
+
+OOP principles (Encapsulation, Abstraction)
+
+Project Structure
 ZoomAttendanceApp
 │
 ├── Domain
@@ -33,30 +34,25 @@ ZoomAttendanceApp
 │
 └── Program.cs
 
-> **Eslatma:** `FullNameWithCode` maydoni masalan: `Eldor Roziyev 1244` — oxirgi raqam **student code** sifatida ishlatiladi.
+Note
 
-##  Dasturni ishga tushirish
+The FullNameWithCode field contains both the full name and the student code.
+Example: Eldor Roziyev 1244 — the last number is used as the student code.
 
-1. Repozitoriyani clone qiling:
+How to Run the Application
+
+Clone the repository:
+
 git clone https://github.com/username/ZoomAttendanceApp.git
 
 
-2. Visual Studio orqali oching
-3. `Program.cs` faylini ishga tushiring
-4. Konsolda menyu orqali ishlang
+Open the project in Visual Studio
 
-##  Muallif
+Run the Program.cs file
 
-**Eldor**
+Use the console menu to interact with the application
+
+Author
+
+Eldor
 C# Backend Developer (Junior)
-
-
-
-
-
-
-
-
-
-
-
