@@ -1,4 +1,8 @@
 Zoom Attendance App – Project Overview
+## 🎥 Application Demo
+
+![Zoom Attendance App Demo](demo1.gif)
+
 
 Zoom Attendance App is a C# Console Application designed to manage participants in Zoom classes or meetings.
 The application allows users to view, search, add, delete, and analyze attendance data.
