@@ -7,7 +7,7 @@ Loyiha **Clean Architecture** tamoyillariga yaqin holda tashkil etilgan bo‘lib
 
 ---
 
-## 🛠 Texnologiyalar
+## Texnologiyalar
 
 * **C# (.NET Console Application)**
 * **EPPlus** (Excel bilan ishlash uchun)
@@ -35,7 +35,7 @@ ZoomAttendanceApp
 
 > **Eslatma:** `FullNameWithCode` maydoni masalan: `Eldor Roziyev 1244` — oxirgi raqam **student code** sifatida ishlatiladi.
 
-## ▶️ Dasturni ishga tushirish
+##  Dasturni ishga tushirish
 
 1. Repozitoriyani clone qiling:
 git clone https://github.com/username/ZoomAttendanceApp.git
@@ -45,7 +45,7 @@ git clone https://github.com/username/ZoomAttendanceApp.git
 3. `Program.cs` faylini ishga tushiring
 4. Konsolda menyu orqali ishlang
 
-## 👨‍💻 Muallif
+##  Muallif
 
 **Eldor**
 C# Backend Developer (Junior)
