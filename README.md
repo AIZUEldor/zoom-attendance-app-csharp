@@ -1,5 +1,20 @@
-Zoom Attendance App – Project Overview
-## 🎥 Application Demo
+Zoom Attendance App – Project Overview Application Demo
+## Tech stack
+- C#
+- ASP.NET Core
+- REST API
+- SQL Server
+- Git
+
+## Description
+Backend project built to practice real-world API development,
+file handling, and clean architecture principles.
+
+## Features
+- CRUD operations
+- RESTful endpoints
+- Layered architecture
+
 
 ![Zoom Attendance App Demo](demo1.gif)
 
